@@ -1,0 +1,17 @@
+cd ~/Documents/SUMO/umassdlarge/
+
+1. convert to sumo map
+netconvert --osm-files umassdlarge.osm -o umassdlarge.net.xml
+
+2. add polygons map features
+copy polygons xml as typemap.xml
+
+polyconvert --net-file umassdlarge.net.xml --osm-files umassdlarge.osm --type-file typemap.xml -o umassdlarge.poly.xml
+
+3. generate random trips
+python /home/vanet/Documents/SUMO/umassdlarge/randomTrips.py -n umassdlarge.net.xml -r umassdlarge.rou.xml
+
+4. change sumocfg
+
+5. run sumo
+sumo-gui -c umassdlarge.sumocfg
